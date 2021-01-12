@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -28,7 +31,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    buildFeatures {
+        dataBinding true
     }
 }
 
@@ -38,7 +44,45 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // timber: logging
+    def timber_version = "4.7.1"
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // Coroutines
+    def coroutine_version = "1.4.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+
+    // hilt dependency (version defined in build.gradle of project)
+    implementation "com.google.dagger:hilt-android:$hitl_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hitl_version"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    def facebook_login_version = "7.1.0"
+    implementation "com.facebook.android:facebook-login:$facebook_login_version"
+
+    def hilt_viewModel_version = "1.0.0-alpha02"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewModel_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_viewModel_version"
+
+    // retrofit
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    def glide_version = "4.11.0"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    // room: database caching
+    def room_version = "2.2.6"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // live data
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
 }

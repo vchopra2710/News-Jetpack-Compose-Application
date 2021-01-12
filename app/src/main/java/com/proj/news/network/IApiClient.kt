@@ -1,6 +1,7 @@
 package com.proj.news.network
 
 import com.proj.news.network.model.articles.TopHeadLinesResponse
+import com.proj.news.util.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,6 +14,6 @@ interface IApiClient {
     @GET("v2/top-headlines")
     suspend fun fetchTopHeadLines(
         @Query("country") country: String?,
-        @Query("apiKey") apiKey: String?,
+        @Query("apiKey") apiKey: String? = API_KEY,
     ): TopHeadLinesResponse
 }

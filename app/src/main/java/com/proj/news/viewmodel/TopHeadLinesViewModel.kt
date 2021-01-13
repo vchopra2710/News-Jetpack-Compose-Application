@@ -5,14 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.proj.news.domain.model.Article
-import com.proj.news.events.DataStateEvent
 import com.proj.news.events.MainStateEvent
 import com.proj.news.repository.INewsRepository
 import com.proj.news.util.DBG_TAG
 import com.proj.news.util.DEFAULT_SEARCH_COUNTRY
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -47,7 +43,6 @@ constructor(
                 when (event) {
 
                     is MainStateEvent.FetchTopHeadlines -> {
-//                        delay(10000)
                         articles.value = repository.fetchTopHeadLines(country)
                     }
                 }

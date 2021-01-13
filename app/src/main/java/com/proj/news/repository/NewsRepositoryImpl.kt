@@ -23,22 +23,19 @@ constructor(
     private val newsDao: NewsDao
 ) : INewsRepository {
 
-    override suspend fun fetchTopHeadLines(country: String?): Flow<DataStateEvent<Boolean>> =
-        flow {
-            emit(Loading)
-            try {
-                val networkBlog: List<ArticleDto>? = apiClient.fetchTopHeadLines(country).articles
-                val domainBlog: List<Article> = articleDtoMapper.toDomainList(networkBlog)
-                val cacheDomain: List<ArticleCache> = articleCacheMapper.fromDomainList(domainBlog)
-                newsDao.insertArticles(cacheDomain)
-                emit(Success(true))
-            } catch (e: Exception) {
-                emit(Error(e))
-            }
+    override suspend fun fetchTopHeadLines(country: String?): List<Article> {
+        try {
+            val networkBlog: List<ArticleDto>? = apiClient.fetchTopHeadLines(country).articles
+            val domainBlog: List<Article> = articleDtoMapper.toDomainList(networkBlog)
+            val cacheDomain: List<ArticleCache> = articleCacheMapper.fromDomainList(domainBlog)
+            newsDao.insertArticles(cacheDomain)
+            return domainBlog
+        } catch (e: Exception) {
+            val exArticleDomainBlog = Article(
+                author = null, content = null, description = null, publishedAt = null, title = null,
+                url = null, urlToImage = null, sourceId = null, sourceName = null, exception = e
+            )
+            return mutableListOf<Article>(exArticleDomainBlog)
         }
-
-    override fun getTopHeadLinesFromDB(): Flow<List<Article>> {
-        return newsDao.getArticles()
     }
-
 }

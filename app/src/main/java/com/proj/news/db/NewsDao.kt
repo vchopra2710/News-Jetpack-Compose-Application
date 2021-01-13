@@ -16,7 +16,4 @@ interface NewsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertArticle(article: ArticleCache?): Long
-
-    @Query("SELECT * FROM articles")
-    fun getArticles(): Flow<List<Article>>
 }

@@ -9,5 +9,6 @@ data class Article(
     val url: String?,
     val urlToImage: String?,
     val sourceId: String?,
-    val sourceName: String?
+    val sourceName: String?,
+    val exception: Exception? = null
 )

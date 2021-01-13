@@ -26,7 +26,7 @@ class ArticleCacheMapper : DomainMapper<ArticleCache?, Article?> {
             content = domainModel?.content,
             description = domainModel?.description,
             publishedAt = domainModel?.publishedAt,
-            title = domainModel?.title,
+            title = domainModel?.title.toString(),
             url = domainModel?.url,
             urlToImage = domainModel?.urlToImage,
             sourceId = domainModel?.sourceId,

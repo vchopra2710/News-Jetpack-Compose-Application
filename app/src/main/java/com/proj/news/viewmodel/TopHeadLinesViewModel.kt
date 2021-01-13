@@ -1,5 +1,7 @@
 package com.proj.news.viewmodel
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.proj.news.domain.model.Article
@@ -8,6 +10,7 @@ import com.proj.news.events.MainStateEvent
 import com.proj.news.repository.INewsRepository
 import com.proj.news.util.DBG_TAG
 import com.proj.news.util.DEFAULT_SEARCH_COUNTRY
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -19,12 +22,8 @@ constructor(
     private val repository: INewsRepository
 ) : ViewModel() {
 
-    private val _dataStateRequestTopHeadlines: MutableLiveData<DataStateEvent<Boolean>> =
-        MutableLiveData()
-    val dataStateRequestTopHeadlines: LiveData<DataStateEvent<Boolean>>
-        get() = _dataStateRequestTopHeadlines
-
-    val domainArticleBlog: LiveData<List<Article>> = repository.getTopHeadLinesFromDB().asLiveData()
+    val articles: MutableState<List<Article>> = mutableStateOf(listOf<Article>())
+    val loading: MutableState<Boolean> = mutableStateOf(false)
 
     init {
         fetchTopHeadlines()
@@ -44,14 +43,15 @@ constructor(
     ) {
         mainStateEvent?.let { event ->
             viewModelScope.launch {
+                loading.value = true
                 when (event) {
 
                     is MainStateEvent.FetchTopHeadlines -> {
-                        repository.fetchTopHeadLines(country).onEach {
-                            _dataStateRequestTopHeadlines.value = it
-                        }.launchIn(viewModelScope)
+//                        delay(10000)
+                        articles.value = repository.fetchTopHeadLines(country)
                     }
                 }
+                loading.value = false
             }
         }
     }

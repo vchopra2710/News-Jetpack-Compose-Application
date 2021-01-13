@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
-import com.proj.news.presentation.components.ArticleCard
+import com.proj.news.presentation.components.*
 import com.proj.news.util.DBG_TAG
 import com.proj.news.viewmodel.TopHeadLinesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,15 +47,20 @@ class TopHeadLinesFragment : Fragment() {
                     ) {
 
                         /** listview for articles **/
-                        LazyColumn {
-                            if (loading) {
-                                Timber.d("$DBG_TAG loading: $loading")
-                            } else {
+                        if (loading) {
+
+                            // display loading while its fetching result from rest api
+                            LoadingArticleListAnimation(imageHeight = 250.dp)
+                        } else {
+
+                            // populate list of articles
+                            LazyColumn {
                                 itemsIndexed(items = articles) { index, article ->
                                     ArticleCard(article = article)
                                 }
                             }
                         }
+
 
                         //TODO(create error page)
                     }

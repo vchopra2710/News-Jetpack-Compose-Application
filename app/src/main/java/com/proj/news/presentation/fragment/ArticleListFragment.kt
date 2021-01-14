@@ -5,7 +5,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.viewModels
-import com.proj.news.R
 import com.proj.news.viewmodel.TopHeadLinesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,7 +16,6 @@ class ArticleListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        setHasOptionsMenu(true)
         return ComposeView(requireContext()).apply {
 
             setContent {
@@ -33,14 +31,5 @@ class ArticleListFragment : Fragment() {
                 )
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.options_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return true
     }
 }

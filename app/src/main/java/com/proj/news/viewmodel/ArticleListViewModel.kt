@@ -12,7 +12,7 @@ import com.proj.news.util.DEFAULT_SEARCH_COUNTRY
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class TopHeadLinesViewModel
+class ArticleListViewModel
 @ViewModelInject
 constructor(
     private val repository: INewsRepository
@@ -20,21 +20,31 @@ constructor(
 
     val articles: MutableState<List<Article>> = mutableStateOf(listOf<Article>())
     val loading: MutableState<Boolean> = mutableStateOf(false)
+    val query = mutableStateOf("")
 
     init {
         fetchTopHeadlines()
     }
 
-    private fun fetchTopHeadlines(country: String? = DEFAULT_SEARCH_COUNTRY) {
-        Timber.d("$DBG_TAG query: $country")
+    fun fetchTopHeadlines(
+        country: String? = DEFAULT_SEARCH_COUNTRY
+    ) {
         getStateEvent(
             mainStateEvent = MainStateEvent.FetchTopHeadlines,
+            query = query.value,
             country = country,
         )
     }
 
+    fun onQueryChanged(newVal: String?) {
+        newVal?.let {
+            query.value = it
+        }
+    }
+
     private fun getStateEvent(
         mainStateEvent: MainStateEvent?,
+        query: String?,
         country: String?
     ) {
         mainStateEvent?.let { event ->
@@ -43,7 +53,7 @@ constructor(
                 when (event) {
 
                     is MainStateEvent.FetchTopHeadlines -> {
-                        articles.value = repository.fetchTopHeadLines(country)
+                        articles.value = repository.fetchTopHeadLines(query, country)
                     }
                 }
                 loading.value = false

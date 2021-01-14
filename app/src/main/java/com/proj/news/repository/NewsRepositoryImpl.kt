@@ -23,9 +23,11 @@ constructor(
     private val newsDao: NewsDao
 ) : INewsRepository {
 
-    override suspend fun fetchTopHeadLines(country: String?): List<Article> {
+    override suspend fun fetchTopHeadLines(query: String?, country: String?): List<Article> {
         try {
-            val networkBlog: List<ArticleDto>? = apiClient.fetchTopHeadLines(country).articles
+            val networkBlog: List<ArticleDto>? = apiClient.fetchTopHeadLines(
+                query = query, country = country
+            ).articles
             val domainBlog: List<Article> = articleDtoMapper.toDomainList(networkBlog)
             val cacheDomain: List<ArticleCache> = articleCacheMapper.fromDomainList(domainBlog)
             newsDao.insertArticles(cacheDomain)

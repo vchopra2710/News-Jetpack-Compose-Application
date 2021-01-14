@@ -1,5 +1,7 @@
 package com.proj.news.presentation.components
 
+import android.os.Build
+import android.text.Html
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -14,15 +16,18 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.proj.news.domain.model.Article
 import com.proj.news.util.DEFAULT_News_ICON
+import com.proj.news.util.buildArticleCardDesc
 import com.proj.news.util.loadPicture
+import java.lang.StringBuilder
 
 @Composable
 fun ArticleCard(
-    article: Article
+    article: Article,
+    onClick: () -> Unit
 ) {
     Card(
         shape = MaterialTheme.shapes.small,
-        modifier = Modifier.padding(6.dp).fillMaxWidth().clickable(onClick = {}),
+        modifier = Modifier.padding(6.dp).fillMaxWidth().clickable(onClick = onClick),
         elevation = 10.dp
     ) {
 
@@ -36,19 +41,20 @@ fun ArticleCard(
                         contentScale = ContentScale.Crop
                     )
                 }
-
             }
 
             Text(
                 text = article.title.toString(),
-                modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.Start).padding(top=10.dp),
-                style = MaterialTheme.typography.body1
+                modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.Start)
+                    .padding(top = 10.dp),
+                style = MaterialTheme.typography.h6
             )
 
             Text(
-                text = article.publishedAt.toString(),
-                modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.Start).padding(top=6.dp),
-                style = MaterialTheme.typography.body2
+                text = buildArticleCardDesc(article).toString(),
+                modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.Start)
+                    .padding(top = 6.dp),
+                style = MaterialTheme.typography.body1
             )
         }
 

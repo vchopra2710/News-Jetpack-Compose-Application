@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface INewsRepository {
 
     // get top headlines from api
-    suspend fun fetchTopHeadLines(country: String?): List<Article>
+    suspend fun fetchTopHeadLines(query: String?, country: String?): List<Article>
 }

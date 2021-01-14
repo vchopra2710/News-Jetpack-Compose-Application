@@ -6,6 +6,6 @@
     app:startDestination="@id/topHeadLinesFragment">
     <fragment
         android:id="@+id/topHeadLinesFragment"
-        android:name="com.proj.news.presentation.fragment.TopHeadLinesFragment"
-        android:label="TopHeadLinesFragment" />
+        android:name="com.proj.news.presentation.fragment.ArticleListFragment"
+        android:label="TopHeadLinesFragment"/>
 </navigation>

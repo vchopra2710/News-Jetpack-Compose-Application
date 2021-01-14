@@ -3,8 +3,6 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-    id 'androidx.navigation.safeargs'
-    id 'kotlin-android-extensions'
 }
 
 android {
@@ -42,12 +40,8 @@ android {
         def kotlin_compiler_extension_version = "1.0.0-alpha09"
         kotlinCompilerExtensionVersion kotlin_compiler_extension_version
     }
-    androidExtensions {
-        experimental = true
-    }
     buildFeatures {
         compose true
-        dataBinding true
     }
 }
 

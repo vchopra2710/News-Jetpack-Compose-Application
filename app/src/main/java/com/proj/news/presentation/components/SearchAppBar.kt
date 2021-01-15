@@ -10,14 +10,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.proj.news.R
 
 @Composable
 fun SearchAppBar(
     query: String,
+    countryName: String?,
     onQueryChanged: (String) -> Unit,
     fetchTopHeadlines: () -> Unit,
 ) {
@@ -27,6 +30,11 @@ fun SearchAppBar(
         modifier = Modifier.fillMaxWidth()
     ) {
         Column {
+
+            // top bar
+            TopAppBar(
+                title = { Text(text = "News: $countryName") }
+            )
 
             // top search bar
             Row(
@@ -57,21 +65,6 @@ fun SearchAppBar(
                     textStyle = TextStyle(color = MaterialTheme.colors.onSurface),
                     backgroundColor = MaterialTheme.colors.surface
                 )
-
-                /*ConstraintLayout(modifier = Modifier.align(Alignment.CenterVertically)) {
-                    val menu = createRef()
-                    IconButton(
-                        onClick = onToggleTheme,
-                        modifier = Modifier.constrainAs(menu) {
-                            end.linkTo(parent.end)
-                            top.linkTo(parent.top)
-                            bottom.linkTo(parent.bottom)
-                        }
-                    ) {
-                        Icon(Icons.Filled.MoreVert)
-                    }
-
-                }*/
             }
         }
     }

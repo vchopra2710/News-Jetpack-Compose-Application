@@ -1,4 +1,4 @@
-package com.proj.news.presentation.fragment
+package com.proj.news.presentation.fragment.map
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

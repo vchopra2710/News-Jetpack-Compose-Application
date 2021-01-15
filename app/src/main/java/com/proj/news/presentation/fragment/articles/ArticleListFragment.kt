@@ -1,4 +1,4 @@
-package com.proj.news.presentation.fragment
+package com.proj.news.presentation.fragment.articles
 
 import android.os.Bundle
 import android.view.*

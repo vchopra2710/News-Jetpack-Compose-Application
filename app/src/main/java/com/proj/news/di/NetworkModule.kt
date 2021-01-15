@@ -33,7 +33,7 @@ object NetworkModule {
     fun provideNewsService(): IApiClient {
         val requestInterceptor = Interceptor { chain ->
             val url = chain.request().url().newBuilder().build()
-            Timber.d("$DBG_TAG URL: $url")
+//            Timber.d("$DBG_TAG URL: $url")
             val req = chain.request().newBuilder().url(url).build()
             return@Interceptor chain.proceed(req)
         }

@@ -103,4 +103,7 @@ dependencies {
 
     // live data
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+
+    // for maps
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 }

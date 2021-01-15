@@ -3,9 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/topHeadLinesFragment">
+    app:startDestination="@id/mapFragment">
     <fragment
-        android:id="@+id/topHeadLinesFragment"
+        android:id="@+id/mapFragment"
+        android:name="com.proj.news.presentation.fragment.MapFragment"
+        android:label="MapFragment" >
+        <action
+            android:id="@+id/action_mapFragment_to_articleListFragment"
+            app:destination="@id/articleListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleListFragment"
         android:name="com.proj.news.presentation.fragment.ArticleListFragment"
-        android:label="TopHeadLinesFragment"/>
+        android:label="ArticleListFragment" />
 </navigation>

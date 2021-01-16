@@ -25,6 +25,7 @@ fun ShowArticleList(
     query: String,
     onQueryChanged: (String) -> Unit,
     fetchTopHeadlines: () -> Unit,
+    countryName: String?,
     context: Context,
 ) {
 
@@ -35,6 +36,7 @@ fun ShowArticleList(
         topBar = {
             SearchAppBar(
                 query = query,
+                countryName=countryName,
                 onQueryChanged = onQueryChanged,
                 fetchTopHeadlines = fetchTopHeadlines
             )

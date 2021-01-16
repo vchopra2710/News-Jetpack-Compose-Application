@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Your News</string>
+    <string name="country_alpha_code_tag">cntry_alpha_code</string>
+    <string name="country_name_tag">cntry_name</string>
 </resources>

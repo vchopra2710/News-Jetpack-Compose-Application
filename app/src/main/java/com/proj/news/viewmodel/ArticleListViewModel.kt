@@ -7,10 +7,8 @@ import androidx.lifecycle.*
 import com.proj.news.domain.model.Article
 import com.proj.news.events.MainStateEvent
 import com.proj.news.repository.INewsRepository
-import com.proj.news.util.DBG_TAG
-import com.proj.news.util.DEFAULT_SEARCH_COUNTRY
+import com.proj.news.util.DEFAULT_SEARCH_COUNTRY_ALPHA_CODE
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class ArticleListViewModel
 @ViewModelInject
@@ -22,17 +20,13 @@ constructor(
     val loading: MutableState<Boolean> = mutableStateOf(false)
     val query = mutableStateOf("")
 
-    init {
-        fetchTopHeadlines()
-    }
-
     fun fetchTopHeadlines(
-        country: String? = DEFAULT_SEARCH_COUNTRY
+        countryAlphaCode: String? = DEFAULT_SEARCH_COUNTRY_ALPHA_CODE
     ) {
         getStateEvent(
             mainStateEvent = MainStateEvent.FetchTopHeadlines,
             query = query.value,
-            country = country,
+            country = countryAlphaCode,
         )
     }
 

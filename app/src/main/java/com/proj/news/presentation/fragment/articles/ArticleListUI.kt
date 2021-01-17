@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.proj.news.domain.model.Article
+import com.proj.news.domain.model.Country
 import com.proj.news.presentation.components.*
 
 @Composable
@@ -24,19 +25,18 @@ fun ShowArticleList(
     loading: Boolean,
     query: String,
     onQueryChanged: (String) -> Unit,
-    fetchTopHeadlines: () -> Unit,
+    fetchTopHeadlines: (String?) -> Unit,
     countryName: String?,
+    countryAlphaCode: String?,
     context: Context,
 ) {
-
-
     Scaffold(
-//        floatingActionButton = { FloatingActionButtonBuild() },
         floatingActionButtonPosition = FabPosition.End,
         topBar = {
             SearchAppBar(
                 query = query,
-                countryName=countryName,
+                countryName = countryName,
+                countryAlphaCode = countryAlphaCode,
                 onQueryChanged = onQueryChanged,
                 fetchTopHeadlines = fetchTopHeadlines
             )

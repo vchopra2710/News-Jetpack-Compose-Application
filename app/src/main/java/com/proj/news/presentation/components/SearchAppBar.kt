@@ -16,13 +16,15 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.proj.news.R
+import com.proj.news.domain.model.Country
 
 @Composable
 fun SearchAppBar(
     query: String,
     countryName: String?,
+    countryAlphaCode: String?,
     onQueryChanged: (String) -> Unit,
-    fetchTopHeadlines: () -> Unit,
+    fetchTopHeadlines: (String?) -> Unit,
 ) {
     Surface(
         elevation = 8.dp,
@@ -58,7 +60,7 @@ fun SearchAppBar(
                     },
                     onImeActionPerformed = { action, softKeyboardController ->
                         if (action == ImeAction.Search) {
-                            fetchTopHeadlines()
+                            fetchTopHeadlines(countryAlphaCode)
                             softKeyboardController?.hideSoftwareKeyboard()
                         }
                     },

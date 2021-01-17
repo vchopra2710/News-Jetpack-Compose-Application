@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.viewModels
 import com.proj.news.R
+import com.proj.news.domain.model.Country
+import com.proj.news.util.buildCountryList
 import com.proj.news.viewmodel.ArticleListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,6 +24,7 @@ class ArticleListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
+
         return ComposeView(requireContext()).apply {
 
             setContent {
@@ -34,6 +37,7 @@ class ArticleListFragment : Fragment() {
                     onQueryChanged = viewModel::onQueryChanged,
                     fetchTopHeadlines = viewModel::fetchTopHeadlines,
                     countryName = getArgData(R.string.country_name_tag),
+                    countryAlphaCode = getArgData(R.string.country_alpha_code_tag),
                     context = requireContext()
                 )
             }

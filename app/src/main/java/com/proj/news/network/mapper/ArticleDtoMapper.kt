@@ -1,52 +1,53 @@
 package com.proj.news.network.mapper
 
+import com.proj.news.db.mapper.CacheMapper
+import com.proj.news.db.model.ArticleCache
 import com.proj.news.domain.mapper.DomainMapper
 import com.proj.news.domain.model.Article
 import com.proj.news.network.model.articles.ArticleDto
 import com.proj.news.network.model.articles.Source
 
-class ArticleDtoMapper : DomainMapper<ArticleDto?, Article?> {
-    override fun mapToDomainModel(model: ArticleDto?): Article {
-        return Article(
-            author = model?.author,
-            content = model?.content,
-            description = model?.description,
-            publishedAt = model?.publishedAt,
-            title = model?.title,
-            url = model?.url,
-            urlToImage = model?.urlToImage,
-            sourceId = model?.source?.id,
-            sourceName = model?.source?.name
+class ArticleDtoMapper : CacheMapper<ArticleDto?, ArticleCache?> {
+    override fun mapToCacheModel(dto: ArticleDto?): ArticleCache {
+        return ArticleCache(
+            author = dto?.author,
+            content = dto?.content,
+            description = dto?.description,
+            publishedAt = dto?.publishedAt,
+            title = dto?.title.toString(),
+            url = dto?.url,
+            urlToImage = dto?.urlToImage,
+            sourceId = dto?.source?.id,
+            sourceName = dto?.source?.name
         )
     }
 
-    override fun mapFromDomainModel(domainModel: Article?): ArticleDto {
+    override fun mapFromCacheModel(cache: ArticleCache?): ArticleDto {
         return ArticleDto(
-            author = domainModel?.author,
-            content = domainModel?.content,
-            description = domainModel?.description,
-            publishedAt = domainModel?.publishedAt,
-            title = domainModel?.title,
-            url = domainModel?.url,
-            urlToImage = domainModel?.urlToImage,
+            author = cache?.author,
+            content = cache?.content,
+            description = cache?.description,
+            publishedAt = cache?.publishedAt,
+            title = cache?.title.toString(),
+            url = cache?.url,
+            urlToImage = cache?.urlToImage,
             source = Source(
-                id = domainModel?.sourceId,
-                name = domainModel?.sourceName
+                id = cache?.sourceId,
+                name = cache?.sourceName
             )
         )
     }
 
-
-    fun toDomainList(initial: List<ArticleDto>?): List<Article> {
+    fun toCacheList(initial: List<ArticleDto>?): List<ArticleCache> {
         initial?.let {
-            return it.map { mapToDomainModel(it) }
+            return it.map { mapToCacheModel(it) }
         }
-        return listOf<Article>()
+        return listOf<ArticleCache>()
     }
 
-    fun fromDomainList(initial: List<Article>?): List<ArticleDto> {
+    fun fromCacheList(initial: List<ArticleCache>?): List<ArticleDto> {
         initial?.let {
-            return it.map { mapFromDomainModel(it) }
+            return it.map { mapFromCacheModel(it) }
         }
         return listOf<ArticleDto>()
     }

@@ -18,6 +18,7 @@ interface IApiClient {
     suspend fun fetchTopHeadLines(
         @Query("q") query: String?,
         @Query("country") country: String?,
+        @Query("language") language: String?="en",
         @Query("apiKey") apiKey: String? = API_KEY,
     ): TopHeadLinesResponse
 }

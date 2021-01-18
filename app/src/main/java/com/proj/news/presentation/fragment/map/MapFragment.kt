@@ -9,11 +9,13 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.proj.news.R
 import com.proj.news.domain.model.Country
 import com.proj.news.util.buildCountryList
+import com.proj.news.util.getResBitmap
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -48,8 +50,14 @@ class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback,
 
     private fun addMultipleMarker(mMap: GoogleMap?) {
         for (country in countries) {
+
             mMap?.addMarker(
                 MarkerOptions().position(country.latLng).title(country.name)
+                    .icon(
+                        BitmapDescriptorFactory.fromBitmap(
+                            getResBitmap(requireContext(), country.resId)
+                        )
+                    )
             )?.tag = country.alpha2Code
 
             if (country.focused) {

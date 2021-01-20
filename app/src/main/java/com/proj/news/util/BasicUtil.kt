@@ -130,5 +130,46 @@ fun buildCountryList(): List<Country> {
             resId = R.drawable.ic_cu
         )
     )
+    _list.add(
+        Country(
+            name = "Czechia",
+            latLng = LatLng(50.07093831326505, 14.44283240844085),
+            alpha2Code = "cz",
+            resId = R.drawable.ic_launcher_foreground
+        )
+    )
+    _list.add(
+        Country(
+            name = "Germany",
+            latLng = LatLng(50.84083023647146, 10.054801475474456),
+            alpha2Code = "de",
+            resId = R.drawable.ic_de
+        )
+    )
+    _list.add(
+        Country(
+            name = "Egypt",
+            latLng = LatLng(26.841449258547254, 29.859159560587873),
+            alpha2Code = "eg",
+            resId = R.drawable.ic_eg
+        )
+    )
+    _list.add(
+        Country(
+            name = "France",
+            latLng = LatLng(46.7220331638811, 2.309714663963177),
+            alpha2Code = "fr",
+            resId = R.drawable.ic_fr
+        )
+    )
+    _list.add(
+        Country(
+            name = "United Kingdom",
+            latLng = LatLng(55.308664189329264, -3.0597779373774934),
+            alpha2Code = "gb",
+            resId = R.drawable.ic_launcher_foreground
+        )
+    )
+
     return _list
 }

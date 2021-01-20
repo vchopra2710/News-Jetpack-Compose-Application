@@ -1,4 +1,4 @@
-package com.proj.news.db.mapper
+package com.proj.news.db.mapper.article
 
 import com.proj.news.db.model.ArticleCache
 import com.proj.news.domain.mapper.DomainMapper

@@ -1,23 +1,17 @@
 package com.proj.news.repository
 
 import com.proj.news.db.NewsDao
-import com.proj.news.db.mapper.ArticleCacheMapper
+import com.proj.news.db.mapper.article.ArticleCacheMapper
 import com.proj.news.db.model.ArticleCache
 import com.proj.news.domain.model.Article
-import com.proj.news.events.DataStateEvent
-import com.proj.news.events.DataStateEvent.Loading
-import com.proj.news.events.DataStateEvent.Success
-import com.proj.news.events.DataStateEvent.Error
-import com.proj.news.network.IApiClient
-import com.proj.news.network.mapper.ArticleDtoMapper
+import com.proj.news.network.INewsClient
+import com.proj.news.network.mapper.article.ArticleDtoMapper
 import com.proj.news.network.model.articles.ArticleDto
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import java.lang.Exception
 
 class NewsRepositoryImpl
 constructor(
-    private val apiClient: IApiClient,
+    private val apiClient: INewsClient,
     private val articleDtoMapper: ArticleDtoMapper,
     private val articleCacheMapper: ArticleCacheMapper,
     private val newsDao: NewsDao

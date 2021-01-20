@@ -1,9 +1,7 @@
-package com.proj.news.network.mapper
+package com.proj.news.network.mapper.article
 
 import com.proj.news.db.mapper.CacheMapper
 import com.proj.news.db.model.ArticleCache
-import com.proj.news.domain.mapper.DomainMapper
-import com.proj.news.domain.model.Article
 import com.proj.news.network.model.articles.ArticleDto
 import com.proj.news.network.model.articles.Source
 

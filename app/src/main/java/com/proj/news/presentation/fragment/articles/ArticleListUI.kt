@@ -37,11 +37,8 @@ fun ShowArticleList(
                 onQueryChanged = onQueryChanged,
                 fetchTopHeadlines = fetchTopHeadlines
             )
-        },
-        bottomBar = { BottomNavigationBar() }
+        }
     ) {
-
-
         Spacer(modifier = Modifier.padding(5.dp))
 
         Box(

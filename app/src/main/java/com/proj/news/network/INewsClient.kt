@@ -1,11 +1,11 @@
 package com.proj.news.network
 
 import com.proj.news.network.model.articles.TopHeadLinesResponse
-import com.proj.news.util.API_KEY
+import com.proj.news.util.NEWS_API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface IApiClient {
+interface INewsClient {
 
     /**
      *
@@ -19,6 +19,6 @@ interface IApiClient {
         @Query("q") query: String?,
         @Query("country") country: String?,
         @Query("language") language: String?="en",
-        @Query("apiKey") apiKey: String? = API_KEY,
+        @Query("apiKey") apiKey: String? = NEWS_API_KEY,
     ): TopHeadLinesResponse
 }

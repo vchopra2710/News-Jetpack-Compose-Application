@@ -1,11 +1,8 @@
 package com.proj.news.di
 
-import com.proj.news.network.IApiClient
+import com.proj.news.network.INewsClient
 import com.proj.news.network.mapper.ArticleDtoMapper
-import com.proj.news.util.BASE_URL
-import com.proj.news.util.CONNECT_TIMEOUT
-import com.proj.news.util.DBG_TAG
-import com.proj.news.util.READ_TIMEOUT
+import com.proj.news.util.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,7 +27,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideNewsService(): IApiClient {
+    fun provideNewsService(): INewsClient {
         val requestInterceptor = Interceptor { chain ->
             val url = chain.request().url().newBuilder().build()
 //            Timber.d("$DBG_TAG URL: $url")
@@ -44,9 +41,9 @@ object NetworkModule {
             .addInterceptor(requestInterceptor).build()
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(NEWS_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
-            .build().create(IApiClient::class.java)
+            .build().create(INewsClient::class.java)
     }
 }

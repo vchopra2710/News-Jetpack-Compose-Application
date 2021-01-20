@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.proj.news.db.NewsDB
 import com.proj.news.db.NewsDao
-import com.proj.news.db.mapper.ArticleCacheMapper
+import com.proj.news.db.mapper.article.ArticleCacheMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

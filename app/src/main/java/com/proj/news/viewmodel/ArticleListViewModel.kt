@@ -6,14 +6,14 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.proj.news.domain.model.Article
 import com.proj.news.events.MainStateEvent
-import com.proj.news.repository.INewsRepository
+import com.proj.news.repository.IMainRepository
 import com.proj.news.util.DEFAULT_SEARCH_COUNTRY_ALPHA_CODE
 import kotlinx.coroutines.launch
 
 class ArticleListViewModel
 @ViewModelInject
 constructor(
-    private val repository: INewsRepository
+    private val repository: IMainRepository
 ) : ViewModel() {
 
     val articles: MutableState<List<Article>> = mutableStateOf(listOf<Article>())

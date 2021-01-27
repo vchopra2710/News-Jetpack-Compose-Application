@@ -42,6 +42,7 @@ android {
     }
     buildFeatures {
         compose true
+        dataBinding true
     }
 }
 
@@ -57,14 +58,18 @@ dependencies {
     def timber_version = "4.7.1"
     implementation "com.jakewharton.timber:timber:$timber_version"
 
-    def androidx_ui = "1.0.0-alpha07"
-    implementation "androidx.ui:ui-tooling:$androidx_ui"
-
     def compose = "1.0.0-alpha10"
     implementation "androidx.compose.ui:ui:$compose"
+    // for android interoperability
+    implementation "androidx.compose.ui:ui-viewbinding:$compose"
+    // Tooling support (Previews, etc.)
+    implementation "androidx.compose.ui:ui-tooling:$compose"
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
     implementation "androidx.compose.foundation:foundation:$compose"
+    // Integration with observables
     implementation "androidx.compose.runtime:runtime-livedata:$compose"
     implementation "androidx.compose.runtime:runtime-rxjava2:$compose"
+    // Material Design
     implementation "androidx.compose.material:material:$compose"
     implementation "androidx.compose.material:material-icons-core:$compose"
     implementation "androidx.compose.material:material-icons-extended:$compose"

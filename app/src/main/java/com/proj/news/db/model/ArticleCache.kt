@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "articles")
 data class ArticleCache(
-//    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "articleId") val articleId: Long = 0L,
     @ColumnInfo(name = "author") val author: String?,
     @ColumnInfo(name = "content") val content: String?,
     @ColumnInfo(name = "description") val description: String?,

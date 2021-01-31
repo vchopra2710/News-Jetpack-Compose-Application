@@ -1,4 +1,4 @@
-# News
+# News Application
 
 Android studio project to display lates news of supported counties
 

@@ -81,15 +81,14 @@ dependencies {
 
     // hilt dependency (version defined in build.gradle of project)
     implementation "com.google.dagger:hilt-android:$hitl_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hitl_version"
+    kapt "com.google.dagger:hilt-compiler:$hitl_version"
+
+    def hilt_viewModel_version = "1.0.0-alpha02"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewModel_version"
 
     def nav_version = "2.3.2"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-
-    def hilt_viewModel_version = "1.0.0-alpha02"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewModel_version"
-    kapt "androidx.hilt:hilt-compiler:$hilt_viewModel_version"
 
     // retrofit
     def retrofit_version = "2.9.0"

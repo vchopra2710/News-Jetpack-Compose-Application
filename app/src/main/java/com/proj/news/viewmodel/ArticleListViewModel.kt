@@ -2,16 +2,18 @@ package com.proj.news.viewmodel
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.proj.news.domain.model.Article
 import com.proj.news.events.MainStateEvent
 import com.proj.news.repository.IMainRepository
 import com.proj.news.util.DEFAULT_SEARCH_COUNTRY_ALPHA_CODE
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@HiltViewModel
 class ArticleListViewModel
-@ViewModelInject
+@Inject
 constructor(
     private val repository: IMainRepository
 ) : ViewModel() {

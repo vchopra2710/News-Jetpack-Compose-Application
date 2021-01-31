@@ -6,12 +6,13 @@ Android studio project to display lates news of supported counties
 
 * Add google maps(com.google.android.gms.maps.MapView) to jetpack compose by
   using [Interoperability](https://developer.android.com/jetpack/compose/interop)
-    * use [AndroidViewBinding](https://developer.android.com/jetpack/compose/interop#views-in-compose)
+  * use [AndroidViewBinding](https://developer.android.com/jetpack/compose/interop#views-in-compose)
     to bind layout file to compose.
 * [FAB (Floating Action Button)](https://developer.android.com/reference/kotlin/androidx/compose/material/package-summary#floatingactionbutton)
   for changing map type
-    * MAP_TYPE_SATELLITE
-    * MAP_TYPE_TERRAIN
-    * MAP_TYPE_HYBRID
+  * MAP_TYPE_SATELLITE
+  * MAP_TYPE_TERRAIN
+  * MAP_TYPE_HYBRID
 * Use [Scaffold](https://developer.android.com/reference/kotlin/androidx/compose/material/package-summary#scaffold)
-to add fab to compose and animate it.
+  to add FAB(Floating Action Button) to compose
+* FAB animation

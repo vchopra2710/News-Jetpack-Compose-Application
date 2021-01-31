@@ -1,4 +1,4 @@
-package com.proj.news.presentation.fragment.map
+package com.proj.news.presentation.fragment.map.ui
 
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable

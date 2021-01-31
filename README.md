@@ -1,4 +1,4 @@
-# News Application
+# News-Jetpack-Compose-Application
 
 Android studio project to display lates news of supported counties
 

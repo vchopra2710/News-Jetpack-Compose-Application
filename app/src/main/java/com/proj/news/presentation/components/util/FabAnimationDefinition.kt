@@ -6,6 +6,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.ui.unit.dp
 import com.proj.news.presentation.components.util.FabAnimationDefinition.FabState.EXPLODED
 import com.proj.news.presentation.components.util.FabAnimationDefinition.FabState.IDLE
+import com.proj.news.util.FAB_MAX_HEIGHT
+import com.proj.news.util.FAB_MAX_WIDTH
 
 object FabAnimationDefinition {
     enum class FabState {
@@ -17,18 +19,17 @@ object FabAnimationDefinition {
 
     val fabTransitionDefinition = transitionDefinition<FabState> {
         state(IDLE) {
-            this[width] = 60.dp
-            this[height] = 60.dp
+            this[width] = FAB_MAX_WIDTH.dp
+            this[height] = FAB_MAX_WIDTH.dp
         }
         state(EXPLODED) {
-            this[width] = 60.dp
-            this[height] = 320.dp
+            this[width] = FAB_MAX_WIDTH.dp
+            this[height] = FAB_MAX_HEIGHT.dp
         }
 
         transition(fromState = IDLE, toState = EXPLODED) {
-            width using tween(durationMillis = 700)
-            height using tween(durationMillis = 700)
+            width using tween(durationMillis = 500)
+            height using tween(durationMillis = 500)
         }
-
     }
 }

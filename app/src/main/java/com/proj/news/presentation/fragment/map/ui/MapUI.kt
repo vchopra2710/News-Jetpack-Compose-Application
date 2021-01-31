@@ -1,24 +1,18 @@
 package com.proj.news.presentation.fragment.map.ui
 
 import android.content.Context
-import android.graphics.Bitmap
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.platform.AmbientContext
 import androidx.compose.ui.viewinterop.AndroidViewBinding
 import androidx.core.os.bundleOf
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.MarkerOptions
 import com.proj.news.R
 import com.proj.news.databinding.FragmentMapBinding
 import com.proj.news.domain.model.Country
-import com.proj.news.util.DBG_TAG
-import com.proj.news.util.loadPicture
-import timber.log.Timber
 
 @Composable
 fun PopulateMap(
@@ -27,7 +21,6 @@ fun PopulateMap(
     countries: List<Country>?,
     mapType: Int
 ) {
-    Timber.d("$DBG_TAG mapType:$mapType")
     AndroidViewBinding(FragmentMapBinding::inflate) {
 
         // setting bundle:null oncreate map
@@ -61,6 +54,7 @@ fun PopulateMap(
             }
         }
     }
+
 }
 
 private fun addMultipleMarker(

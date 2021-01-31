@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.proj.news.domain.model.Country
 import com.proj.news.util.buildCountryList
@@ -25,6 +27,7 @@ class MapFragment : Fragment() {
         countries = buildCountryList()
     }
 
+    @ExperimentalMaterialApi
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,7 +39,7 @@ class MapFragment : Fragment() {
                     nav = findNavController(),
                     countries = countries,
                     mapType = viewModel.mapType.value,
-                    changeMapType = viewModel::updateMapType
+                    changeMapType = viewModel::updateMapType,
                 )
             }
         }
